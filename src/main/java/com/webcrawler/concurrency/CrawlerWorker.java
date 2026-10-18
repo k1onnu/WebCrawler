@@ -13,12 +13,14 @@ import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.CountDownLatch;
 
 @RequiredArgsConstructor
 public class CrawlerWorker implements Runnable {
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36";
     private static final int POLL_TIMEOUT_SECONDS = 3;
     private static final int HTTP_TIMEOUT_MS = 5000;
+    private final CountDownLatch latch;
 
     private final BlockingQueue<String> urlQueue;
     private final Set<String> visitedUrls;
@@ -30,21 +32,25 @@ public class CrawlerWorker implements Runnable {
 
     @Override
     public void run() {
-        String name = Thread.currentThread().getName();
-        logger.log("%s started".formatted(name));
+        try {
+            String name = Thread.currentThread().getName();
+            logger.log(name + " started");
 
-        while (true) {
-            String url = pollNextUrl(name);
-            if (url == null) return;
+            while (true) {
+                String url = pollNextUrl(name);
+                if (url == null) return;
 
-            if (!visitedUrls.add(url)) continue;
+                if (!visitedUrls.add(url)) continue;
 
-            if (pagesProcessed.incrementAndGet() > maxPages) {
-                logger.log("%s reached limit.".formatted(name));
-                return;
+                if (pagesProcessed.incrementAndGet() > maxPages) {
+                    logger.log(name + " reached limit, stopping");
+                    return;
+                }
+
+                processPage(name, url);
             }
-
-            processPage(name, url);
+        } finally {
+            latch.countDown(); // ← ВАЖНО: сообщаем, что воркер закончил
         }
     }
 
