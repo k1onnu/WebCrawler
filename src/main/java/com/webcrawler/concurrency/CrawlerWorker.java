@@ -50,7 +50,7 @@ public class CrawlerWorker implements Runnable {
                 processPage(name, url);
             }
         } finally {
-            latch.countDown(); // ← ВАЖНО: сообщаем, что воркер закончил
+            latch.countDown();
         }
     }
 
