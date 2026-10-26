@@ -22,12 +22,10 @@ public class HtmlParserTest {
                   </body>
                 </html>
                 """;
-
         ParsedPage result = parser.parse("https://pupupu.ru/contacts", html);
 
         List<Contact> contacts = result.contacts();
         assertEquals(1, contacts.size(), "Должен быть ровно 1 Contact");
-
         String email = contacts.get(0).getEmail();
 
         assertNotNull(email, "Email не должен быть null");
@@ -52,10 +50,7 @@ public class HtmlParserTest {
 
         ParsedPage result = parser.parse("https://pupupu.ru/", html);
         List<String> links = result.links();
-
         assertEquals(3, links.size(), "Должно быть 3 ссылки");
-
-        // Проверяем, что относительные ссылки стали абсолютными
         assertTrue(links.contains("https://pupupu.ru/about"),
                 "Относительная /about должна стать абсолютной");
         assertTrue(links.contains("https://example.com/page"),
@@ -75,8 +70,43 @@ public class HtmlParserTest {
                 """;
 
         ParsedPage result = parser.parse("https://test.ru", html);
-
         assertTrue(result.contacts().isEmpty(),
                 "Контактов быть не должно. D HTML нет email");
+    }
+
+    @Test
+    void shouldDeduplicateEmails() {
+        String html = """
+                <html>
+                  <body>
+                    <p>Пишите нам: info@pupupu.ru</p>
+                    <p>Наш email: info@pupupu.ru</p>
+                    <p>Резервный: support@pupupu.ru</p>
+                  </body>
+                </html>
+                """;
+        ParsedPage result = parser.parse("https://pupupu.ru", html);
+        String email = result.contacts().get(0).getEmail();
+        assertEquals("info@pupupu.ru, support@pupupu.ru", email);
+    }
+
+    @Test
+    void shouldHandleEmptyHtml() {
+        ParsedPage result = parser.parse("https://pupupu.ru", "");
+        assertTrue(result.contacts().isEmpty(), "Контактов не должно быть");
+        assertTrue(result.links().isEmpty(), "Ссылок не должно быть");
+    }
+
+    @Test
+    void shouldReturnEmptyLinksWhenNoLinks() {
+        String html = """
+                <html>
+                  <body>
+                    <p>Просто текст. Никаких ссылок тут нет.</p>
+                  </body>
+                </html>
+                """;
+        ParsedPage result = parser.parse("https://pupupu.ru", html);
+        assertTrue(result.links().isEmpty(), "Ссылок быть не должно");
     }
 }

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕷 Web Crawler</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f4f6f8;
+            color: #333;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        h1 { margin-bottom: 20px; font-size: 24px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        input:focus { outline: none; border-color: #0066cc; }
+        button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        button:hover { background: #0052a3; }
+        button:disabled { background: #999; cursor: not-allowed; }
+
+        #status {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 6px;
+            display: none;
+            font-size: 14px;
+        }
+        .status-loading { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .status-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th { background: #f8f9fa; font-weight: 600; }
+        tr:hover { background: #f8f9fa; }
+
+        .empty-msg { text-align: center; color: #888; padding: 20px; font-style: italic; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🕷 Web Crawler</h1>
+
+    <div class="form-group">
+        <label for="url">Стартовый URL</label>
+        <input type="text" id="url" value="https://skillbox.ru/" placeholder="https://example.com">
+    </div>
+
+    <div class="form-group">
+        <label for="maxPages">Максимум страниц</label>
+        <input type="number" id="maxPages" value="10" min="1" max="50">
+    </div>
+
+    <button id="startBtn" onclick="startCrawl()">Запустить краулер</button>
+
+    <div id="status"></div>
+
+    <div id="results" style="display:none;">
+        <h2 style="margin-top: 30px; font-size: 18px;">Результаты</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Источник (URL)</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const statusEl = document.getElementById('status');
+    const btn = document.getElementById('startBtn');
+    const resultsEl = document.getElementById('results');
+    const tableBody = document.getElementById('tableBody');
+
+    function setStatus(text, type) {
+        statusEl.style.display = 'block';
+        statusEl.className = 'status-' + type;
+        statusEl.innerHTML = text;
+    }
+
+    async function startCrawl() {
+        const url = document.getElementById('url').value.trim();
+        const maxPages = parseInt(document.getElementById('maxPages').value);
+
+        if (!url) {
+            setStatus('Введите URL', 'error');
+            return;
+        }
+
+        btn.disabled = true;
+        resultsEl.style.display = 'none';
+        setStatus('⏳ Идёт обход сайта... Пожалуйста, подождите (может занять 20-30 секунд).', 'loading');
+
+        try {
+            // Отправляем POST /api/crawler
+            const response = await fetch('/api/crawler', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    startUrls: [url],
+                    maxPages: maxPages
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка сервера: ' + response.status);
+            }
+
+            const data = await response.json();
+            setStatus(`Обход завершён! Обработано страниц: ${data.pagesProcessed}`, 'success');
+
+            // Загружаем результаты
+            await loadResults();
+
+        } catch (error) {
+            setStatus('Ошибка: ' + error.message, 'error');
+        } finally {
+            btn.disabled = false;
+        }
+    }
+
+    async function loadResults() {
+        // Отправляем GET /api/answer
+        const response = await fetch('/api/answer?page=0&size=20&sortBy=email');
+        const contacts = await response.json();
+
+        tableBody.innerHTML = '';
+
+        if (contacts.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="3" class="empty-msg">Контакты не найдены.</td></tr>';
+        } else {
+            contacts.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${c.id}</td>
+                    <td><b>${c.email || '—'}</b></td>
+                    <td style="word-break: break-all; color: #666;">${c.sourceUrl || '—'}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        resultsEl.style.display = 'block';
+    }
+</script>
+</body>
+</html>
