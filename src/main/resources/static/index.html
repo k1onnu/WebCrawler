@@ -97,7 +97,10 @@
             <thead>
             <tr>
                 <th>ID</th>
+                <th>Компания</th>
                 <th>Email</th>
+                <th>Телефон</th>
+                <th>Адрес</th>
                 <th>Источник (URL)</th>
             </tr>
             </thead>
@@ -173,7 +176,10 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${c.id}</td>
+                    <td>${c.companyName || '—'}</td>
                     <td><b>${c.email || '—'}</b></td>
+                    <td>${c.phone || '—'}</td>
+                    <td style="font-size: 13px;">${c.address || '—'}</td>
                     <td style="word-break: break-all; color: #666;">${c.sourceUrl || '—'}</td>
                 `;
                 tableBody.appendChild(tr);
