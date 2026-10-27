@@ -19,7 +19,7 @@ public class CrawlerScheduler {
     public void scheduledCrawl() {
         log.info("Scheduled crawler started");
 
-        crawlerService.startCrawler(List.of("https://skillbox.ru/"), 5);
+        crawlerService.startCrawler(List.of("https://example.com/"), 5);
 
         log.info("Scheduled crawler finished");
     }
