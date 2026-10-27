@@ -42,10 +42,12 @@ public class CrawlerWorker implements Runnable {
 
                 if (!visitedUrls.add(url)) continue;
 
-                if (pagesProcessed.incrementAndGet() > maxPages) {
+                if (pagesProcessed.get() >= maxPages) {
                     logger.log(name + " reached limit, stopping");
                     return;
                 }
+
+                pagesProcessed.incrementAndGet();
 
                 processPage(name, url);
             }
