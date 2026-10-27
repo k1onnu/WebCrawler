@@ -2,12 +2,12 @@ package com.webcrawler.controller;
 
 import com.webcrawler.dto.CrawlerRequest;
 import com.webcrawler.service.CrawlerService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -19,7 +19,7 @@ public class CrawlerController {
     private final CrawlerService crawlerService;
 
     @PostMapping("/crawler")
-    public ResponseEntity<Map<String, Object>> startCrawler(@RequestBody CrawlerRequest request) {
+    public ResponseEntity<Map<String, Object>> startCrawler(@Valid @RequestBody CrawlerRequest request) {
         int pagesProcessed = crawlerService.startCrawler(
                 request.startUrls(),
                 request.maxPages()
@@ -29,5 +29,11 @@ public class CrawlerController {
                 "pagesProcessed", pagesProcessed,
                 "message", "Crawler finished"
         ));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValiadtionException(MethodArgumentNotValidException ex) {
+        String errorMessage = ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
+        return ResponseEntity.badRequest().body(Map.of("error", errorMessage));
     }
 }

@@ -79,12 +79,12 @@
 
     <div class="form-group">
         <label for="url">Стартовый URL</label>
-        <input type="text" id="url" value="" placeholder="https://example.com">
+        <input type="text" id="url" value="" placeholder="https://example.com" required>
     </div>
 
     <div class="form-group">
         <label for="maxPages">Максимум страниц</label>
-        <input type="number" id="maxPages" value="10" min="1" max="50">
+        <input type="number" id="maxPages" value="10" min="1" max="50" required>
     </div>
 
     <button id="startBtn" onclick="startCrawl()">Запустить краулер</button>
@@ -130,6 +130,24 @@
             return;
         }
 
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                setStatus('URL должен начинаться с http:// или https://', 'error');
+                return;
+            }
+
+        try {
+                const parsedUrl = new URL(url);
+                const host = parsedUrl.hostname;
+
+                if (!host.includes('.') || host.split('.').pop().length < 2) {
+                    setStatus('Некорректный домен. Пример: https://example.com', 'error');
+                    return;
+                }
+            } catch (e) {
+                setStatus('Некорректный URL', 'error');
+                return;
+            }
+
         btn.disabled = true;
         resultsEl.style.display = 'none';
         setStatus('⏳ Идёт обход сайта... Пожалуйста, подождите (может занять 20-30 секунд).', 'loading');
@@ -146,7 +164,9 @@
             });
 
             if (!response.ok) {
-                throw new Error('Ошибка сервера: ' + response.status);
+                const errorData = await response.json().catch(() => ({}));
+                const msg = errorData.error || ('Ошибка сервера: ' + response.status);
+                throw new Error(msg);
             }
 
             const data = await response.json();
