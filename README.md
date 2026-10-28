@@ -1,4 +1,11 @@
 # Web Crawler
+[![Java](https://img.shields.io/badge/Java-17+-ED8B00?style=flat&logo=openjdk&logoColor=white)](#)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.1.1-6DB33F?style=flat&logo=spring-boot&logoColor=white)](#)
+[![H2](https://img.shields.io/badge/H2_Database-2.x-4479A1?style=flat&logo=databricks&logoColor=white)](#)
+[![JUnit 5](https://img.shields.io/badge/JUnit_5-16_Tests-25A162?style=flat&logo=junit5&logoColor=white)](#)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat)](#)
+[![Lines of Code](https://img.shields.io/tokei/lines/github/k1onnu/WebCrawler?style=flat&color=blue)](#)
+
 [![Java CI with Maven](https://github.com/k1onnu/WebCrawler/actions/workflows/build.yml/badge.svg)](https://github.com/k1onnu/WebCrawler/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/k1onnu/WebCrawler/branch/main/graph/badge.svg)](https://codecov.io/gh/k1onnu/WebCrawler)
 > **Многопоточный сервис для сбора контактных данных (email, телефоны, адреса) с веб-сайтов.**
