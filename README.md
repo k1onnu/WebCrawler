@@ -4,7 +4,6 @@
 [![H2](https://img.shields.io/badge/H2_Database-2.x-4479A1?style=flat&logo=databricks&logoColor=white)](#)
 [![JUnit 5](https://img.shields.io/badge/JUnit_5-16_Tests-25A162?style=flat&logo=junit5&logoColor=white)](#)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat)](#)
-[![Lines of Code](https://img.shields.io/tokei/lines/github/k1onnu/WebCrawler?style=flat&color=blue)](#)
 
 [![Java CI with Maven](https://github.com/k1onnu/WebCrawler/actions/workflows/build.yml/badge.svg)](https://github.com/k1onnu/WebCrawler/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/k1onnu/WebCrawler/branch/main/graph/badge.svg)](https://codecov.io/gh/k1onnu/WebCrawler)
