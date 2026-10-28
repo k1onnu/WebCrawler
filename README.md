@@ -38,7 +38,7 @@
 ```bash
 curl -X POST http://localhost:8080/api/crawler \
   -H "Content-Type: application/json" \
-  -d '{"startUrls":["https://skillbox.ru/"],"maxPages":10}'
+  -d '{"startUrls":["https://example.com/"],"maxPages":10}'
 ```
 
 **2. Получение результатов (GET):**
