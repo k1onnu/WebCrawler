@@ -33,3 +33,6 @@ build/
 ### Project-specific ###
 crawler.log
 *.log
+
+### Maven Wrapper ###
+.mvn/wrapper/
