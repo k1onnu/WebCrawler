@@ -17,7 +17,6 @@ import java.util.concurrent.CountDownLatch;
 
 @RequiredArgsConstructor
 public class CrawlerWorker implements Runnable {
-    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36";
     private static final int POLL_TIMEOUT_SECONDS = 3;
     private static final int HTTP_TIMEOUT_MS = 5000;
     private final CountDownLatch latch;
@@ -29,6 +28,7 @@ public class CrawlerWorker implements Runnable {
     private final FileLogger logger;
     private final AtomicInteger pagesProcessed;
     private final int maxPages;
+    private final String userAgent;
 
     @Override
     public void run() {
@@ -71,7 +71,7 @@ public class CrawlerWorker implements Runnable {
         try {
             Document document = Jsoup.connect(url)
                     .timeout(HTTP_TIMEOUT_MS)
-                    .userAgent(USER_AGENT)
+                    .userAgent(userAgent)
                     .get();
 
             ParsedPage parsedPage = htmlParser.parse(url, document.outerHtml());

@@ -5,7 +5,9 @@ import com.webcrawler.concurrency.FileLogger;
 import com.webcrawler.repository.ContactRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.Set;
@@ -26,6 +28,8 @@ public class CrawlerService {
     private final ContactRepository repository;
     private final HtmlParser htmlParser;
     private final FileLogger fileLogger;
+    @Value("${crawler.user-agent}")
+    private String userAgent;
 
     /**
      * Запускает краулер и ЖДЁТ завершения работы всех воркеров.
@@ -58,7 +62,8 @@ public class CrawlerService {
                     htmlParser,
                     fileLogger,
                     pagesProcessed,
-                    maxPages
+                    maxPages,
+                    userAgent
             );
             crawlerPool.submit(worker);
         }
