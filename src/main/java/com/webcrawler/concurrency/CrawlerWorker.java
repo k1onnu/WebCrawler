@@ -19,6 +19,9 @@ import java.util.concurrent.CountDownLatch;
 public class CrawlerWorker implements Runnable {
     private static final int POLL_TIMEOUT_SECONDS = 3;
     private static final int HTTP_TIMEOUT_MS = 5000;
+
+    private volatile boolean running = true;
+
     private final CountDownLatch latch;
 
     private final BlockingQueue<String> urlQueue;
@@ -36,18 +39,22 @@ public class CrawlerWorker implements Runnable {
             String name = Thread.currentThread().getName();
             logger.log(name + " started");
 
-            while (true) {
+            while (running) {
                 String url = pollNextUrl(name);
-                if (url == null) return;
+
+                if (url == null) {
+                    running = false;
+                    break;
+                }
 
                 if (!visitedUrls.add(url)) continue;
 
-                if (pagesProcessed.get() >= maxPages) {
+                if (pagesProcessed.getAndIncrement() >= maxPages) {
+                    pagesProcessed.decrementAndGet();
                     logger.log(name + " reached limit, stopping");
-                    return;
+                    running = false;
+                    break;
                 }
-
-                pagesProcessed.incrementAndGet();
 
                 processPage(name, url);
             }
