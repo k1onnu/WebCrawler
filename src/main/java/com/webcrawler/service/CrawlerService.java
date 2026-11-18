@@ -5,16 +5,17 @@ import com.webcrawler.concurrency.FileLogger;
 import com.webcrawler.repository.ContactRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -31,51 +32,47 @@ public class CrawlerService {
     @Value("${crawler.user-agent}")
     private String userAgent;
 
-    /**
-     * Запускает краулер и ЖДЁТ завершения работы всех воркеров.
-     *
-     * @param startUrls  стартовые URL
-     * @param maxPages   максимум страниц для обхода
-     * @return количество обработанных страниц
-     */
     public int startCrawler(List<String> startUrls, int maxPages) {
         log.info("Crawler started: urls={}, maxPages={}", startUrls.size(), maxPages);
 
-        BlockingQueue<String> urlQueue = new LinkedBlockingQueue<>(startUrls);
+        BlockingQueue<String> urlQueue = new LinkedBlockingQueue<>(5000);
+        startUrls.forEach(urlQueue::offer);
         Set<String> visitedUrls = ConcurrentHashMap.newKeySet();
         AtomicInteger pagesProcessed = new AtomicInteger(0);
 
         int workers = Math.min(urlQueue.size(), 4);
         if (workers == 0) {
-            log.warn("No URLs to crawler");
+            log.warn("No URLs to crawl");
             return 0;
         }
 
         CountDownLatch latch = new CountDownLatch(workers);
 
+        // Список для хранения Future
+        List<Future<?>> futures = new ArrayList<>();
+
         for (int i = 0; i < workers; i++) {
             CrawlerWorker worker = new CrawlerWorker(
-                    latch,
-                    urlQueue,
-                    visitedUrls,
-                    repository,
-                    htmlParser,
-                    fileLogger,
-                    pagesProcessed,
-                    maxPages,
-                    userAgent
+                    latch, urlQueue, visitedUrls, repository,
+                    htmlParser, fileLogger, pagesProcessed, maxPages, userAgent
             );
-            crawlerPool.submit(worker);
+            futures.add(crawlerPool.submit(worker));
         }
 
         try {
             boolean finished = latch.await(2, TimeUnit.MINUTES);
             if (!finished) {
-                log.warn("Crawler timed out after 2 minutes!");
+                log.warn("Crawler timed out! Cancelling tasks...");
+                for (Future<?> future : futures) {
+                    future.cancel(true);
+                }
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             log.warn("Interrupted while waiting for crawler completion");
+            for (Future<?> future : futures) {
+                future.cancel(true);
+            }
         }
 
         int result = pagesProcessed.get();
