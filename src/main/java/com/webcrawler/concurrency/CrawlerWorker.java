@@ -3,7 +3,9 @@ package com.webcrawler.concurrency;
 import com.webcrawler.dto.ParsedPage;
 import com.webcrawler.entity.Contact;
 import com.webcrawler.repository.ContactRepository;
+import com.webcrawler.service.CrawlerMetrics;
 import com.webcrawler.service.HtmlParser;
+import io.micrometer.core.instrument.Timer;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -32,6 +34,7 @@ public class CrawlerWorker implements Runnable {
     private final AtomicInteger pagesProcessed;
     private final int maxPages;
     private final String userAgent;
+    private final CrawlerMetrics metrics;
 
     @Override
     public void run() {
@@ -75,6 +78,9 @@ public class CrawlerWorker implements Runnable {
 
     private void processPage(String name, String url) {
         logger.log("%s from %s".formatted(name, url));
+
+        Timer.Sample sample = Timer.start();
+
         try {
             Document document = Jsoup.connect(url)
                     .timeout(HTTP_TIMEOUT_MS)
@@ -85,11 +91,21 @@ public class CrawlerWorker implements Runnable {
 
             saveContacts(name, url, parsedPage.contacts());
 
-            if(pagesProcessed.get() < maxPages)
-                parsedPage.links().forEach(urlQueue::offer);
+            if (pagesProcessed.get() < maxPages) {
+                for (String link : parsedPage.links()) {
+                    if (!urlQueue.offer(link)) {
+                        logger.log(name + " Queue is full! Dropping link: " + link);
+                    }
+                }
+            }
+
+            metrics.incrementSuccess();
 
         } catch (Exception e) {
             logger.log("%s ERROR on %s: %s".formatted(name, url, e.getMessage()));
+            metrics.incrementError();
+        } finally {
+            sample.stop(metrics.getParseTimer());
         }
     }
 
@@ -101,7 +117,8 @@ public class CrawlerWorker implements Runnable {
 
         if (fresh.isEmpty()) return;
 
-        repository.saveAll(fresh);;
-        logger.log("%s saved %d contacts from %s".formatted(name, contacts.size(), url));
+        repository.saveAll(fresh);
+        metrics.incrementSavedContacts(fresh.size());
+        logger.log("%s saved %d contacts from %s".formatted(name, fresh.size(), url));
     }
 }

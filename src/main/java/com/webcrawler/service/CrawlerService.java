@@ -31,6 +31,7 @@ public class CrawlerService {
     private final FileLogger fileLogger;
     @Value("${crawler.user-agent}")
     private String userAgent;
+    private final CrawlerMetrics metrics;
 
     public int startCrawler(List<String> startUrls, int maxPages) {
         log.info("Crawler started: urls={}, maxPages={}", startUrls.size(), maxPages);
@@ -54,7 +55,8 @@ public class CrawlerService {
         for (int i = 0; i < workers; i++) {
             CrawlerWorker worker = new CrawlerWorker(
                     latch, urlQueue, visitedUrls, repository,
-                    htmlParser, fileLogger, pagesProcessed, maxPages, userAgent
+                    htmlParser, fileLogger, pagesProcessed, maxPages,
+                    userAgent, metrics
             );
             futures.add(crawlerPool.submit(worker));
         }
