@@ -5,11 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "contact", indexes = {
+        @Index(name = "idx_email", columnList = "email"),
+        @Index(name = "idx_source_url", columnList = "source_url")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +34,7 @@ public class Contact {
     @Column(length = 500)
     private String phone;
 
-    @Column(length = 500)
+    @Column(length = 2000)
     private String address;
 
     @Column(length = 500)

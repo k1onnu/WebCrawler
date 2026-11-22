@@ -1,0 +1,81 @@
+2026-11-22T17:58:24.563+03:00  INFO 5184 --- [webcrawler] [.0-8080-exec-10] com.webcrawler.service.CrawlerService    : Crawler started: urls=1, maxPages=20
+2026-11-22T17:58:24.895+03:00  INFO 5184 --- [webcrawler] [0.0-8080-exec-1] com.webcrawler.service.CrawlerService    : Crawler started: urls=1, maxPages=20
+2026-11-22T17:58:25.230+03:00  INFO 5184 --- [webcrawler] [0.0-8080-exec-3] com.webcrawler.service.CrawlerService    : Crawler started: urls=1, maxPages=20
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+2026-11-22T17:58:35.318+03:00  WARN 5184 --- [webcrawler] [      crawler-0] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 22001, SQLState: 22001
+2026-11-22T17:58:35.318+03:00  WARN 5184 --- [webcrawler] [      crawler-0] org.hibernate.orm.jdbc.error             : Value too long for column "ADDRESS CHARACTER VARYING(500)": "U&'\\0433\\043e\\0440\\043e\\0434 \\041c\\043e\\0441\\043a\\0432\\0430, \\0443\\043b \\0413\\04... (2502)"; SQL statement:
+insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default) [22001-240]
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+2026-11-22T17:58:35.543+03:00  WARN 5184 --- [webcrawler] [      crawler-2] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 22001, SQLState: 22001
+2026-11-22T17:58:35.544+03:00  WARN 5184 --- [webcrawler] [      crawler-2] org.hibernate.orm.jdbc.error             : Value too long for column "ADDRESS CHARACTER VARYING(500)": "U&'\\0433\\043e\\0440\\043e\\0434 \\041c\\043e\\0441\\043a\\0432\\0430, \\0443\\043b \\0413\\04... (2502)"; SQL statement:
+insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default) [22001-240]
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+2026-11-22T17:58:36.771+03:00  WARN 5184 --- [webcrawler] [      crawler-0] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 22001, SQLState: 22001
+2026-11-22T17:58:36.771+03:00  WARN 5184 --- [webcrawler] [      crawler-0] org.hibernate.orm.jdbc.error             : Value too long for column "ADDRESS CHARACTER VARYING(500)": "U&'\\0433. \\0412\\043e\\0437\\043d\\0430\\0433\\0440\\0430\\0436\\0434\\0435\\043d\\0438\\0435... (1167)"; SQL statement:
+insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default) [22001-240]
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+2026-11-22T17:58:37.082+03:00  INFO 5184 --- [webcrawler] [.0-8080-exec-10] com.webcrawler.service.CrawlerService    : Crawler finished: pages processed = 20
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+2026-11-22T17:58:37.112+03:00  WARN 5184 --- [webcrawler] [      crawler-2] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 22001, SQLState: 22001
+2026-11-22T17:58:37.112+03:00  WARN 5184 --- [webcrawler] [      crawler-2] org.hibernate.orm.jdbc.error             : Value too long for column "ADDRESS CHARACTER VARYING(500)": "U&'\\0433. \\0412\\043e\\0437\\043d\\0430\\0433\\0440\\0430\\0436\\0434\\0435\\043d\\0438\\0435... (1167)"; SQL statement:
+insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default) [22001-240]
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+2026-11-22T17:58:37.204+03:00  INFO 5184 --- [webcrawler] [0.0-8080-exec-3] com.webcrawler.service.CrawlerService    : Crawler finished: pages processed = 20
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+2026-11-22T17:58:44.608+03:00  WARN 5184 --- [webcrawler] [      crawler-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 22001, SQLState: 22001
+2026-11-22T17:58:44.608+03:00  WARN 5184 --- [webcrawler] [      crawler-1] org.hibernate.orm.jdbc.error             : Value too long for column "ADDRESS CHARACTER VARYING(500)": "U&'\\0433\\043e\\0440\\043e\\0434 \\041c\\043e\\0441\\043a\\0432\\0430, \\0443\\043b \\0413\\04... (2502)"; SQL statement:
+insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default) [22001-240]
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default)
+2026-11-22T17:58:46.382+03:00  WARN 5184 --- [webcrawler] [      crawler-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 22001, SQLState: 22001
+2026-11-22T17:58:46.382+03:00  WARN 5184 --- [webcrawler] [      crawler-1] org.hibernate.orm.jdbc.error             : Value too long for column "ADDRESS CHARACTER VARYING(500)": "U&'\\0433. \\0412\\043e\\0437\\043d\\0430\\0433\\0440\\0430\\0436\\0434\\0435\\043d\\0438\\0435... (1167)"; SQL statement:
+insert into contact (address,company_name,email,phone,source_url,id) values (?,?,?,?,?,default) [22001-240]
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0 where c1_0.email in (?)
+2026-11-22T17:58:46.558+03:00  INFO 5184 --- [webcrawler] [0.0-8080-exec-1] com.webcrawler.service.CrawlerService    : Crawler finished: pages processed = 20

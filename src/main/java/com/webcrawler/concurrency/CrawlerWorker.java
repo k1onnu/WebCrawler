@@ -11,11 +11,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.CountDownLatch;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class CrawlerWorker implements Runnable {
@@ -110,12 +112,41 @@ public class CrawlerWorker implements Runnable {
     }
 
     private void saveContacts(String name, String url, List<Contact> contacts) {
+        if (contacts.isEmpty()) return;
+
+        // Собираем все email в Set (убираем дубликаты)
+        Set<String> emailsToCheck = contacts.stream()
+                .map(Contact::getEmail)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+
+        if (emailsToCheck.isEmpty()) return;
+
+        // Одним запросом достаем из БД те email, которые уже есть
+        Set<String> existingEmails = repository.findAllByEmailIn(emailsToCheck)
+                .stream()
+                .map(Contact::getEmail)
+                .collect(Collectors.toSet());
+
+        // Оставляем только те контакты, которых еще нет в БД
         List<Contact> fresh = contacts.stream()
-                .filter(c -> c.getEmail() != null)
-                .filter(c -> !repository.existsByEmail(c.getEmail()))
+                .filter(c -> c.getEmail() != null && !existingEmails.contains(c.getEmail()))
                 .toList();
 
         if (fresh.isEmpty()) return;
+
+        // Обрезаем слишком длинные поля, чтобы БД не упала
+        for (Contact c : fresh) {
+            if (c.getEmail() != null && c.getEmail().length() > 2000) {
+                c.setEmail(c.getEmail().substring(0, 2000));
+            }
+            if (c.getAddress() != null && c.getAddress().length() > 2000) {
+                c.setAddress(c.getAddress().substring(0, 2000));
+            }
+            if (c.getCompanyName() != null && c.getCompanyName().length() > 500) {
+                c.setCompanyName(c.getCompanyName().substring(0, 500));
+            }
+        }
 
         repository.saveAll(fresh);
         metrics.incrementSavedContacts(fresh.size());
