@@ -1,0 +1,134 @@
+2026-11-22T17:25:47.256+03:00  INFO 28032 --- [webcrawler] [0.0-8080-exec-1] com.webcrawler.service.CrawlerService    : Crawler started: urls=1, maxPages=5
+[37.850s][info   ][gc,start    ] GC(22) Pause Young (Prepare Mixed) (G1 Evacuation Pause)
+[37.850s][info   ][gc,task     ] GC(22) Using 13 workers of 13 for evacuation
+[37.852s][info   ][gc,phases   ] GC(22)   Pre Evacuate Collection Set: 0.07ms
+[37.852s][info   ][gc,phases   ] GC(22)   Merge Heap Roots: 0.11ms
+[37.852s][info   ][gc,phases   ] GC(22)   Evacuate Collection Set: 1.20ms
+[37.852s][info   ][gc,phases   ] GC(22)   Post Evacuate Collection Set: 0.26ms
+[37.852s][info   ][gc,phases   ] GC(22)   Other: 0.05ms
+[37.852s][info   ][gc,heap     ] GC(22) Eden regions: 13->0(19)
+[37.852s][info   ][gc,heap     ] GC(22) Survivor regions: 2->1(2)
+[37.852s][info   ][gc,heap     ] GC(22) Old regions: 35->37
+[37.852s][info   ][gc,heap     ] GC(22) Humongous regions: 1->1
+[37.852s][info   ][gc,metaspace] GC(22) Metaspace: 92723K(93696K)->92723K(93696K) NonClass: 79894K(80448K)->79894K(80448K) Class: 12828K(13248K)->12828K(13248K)
+[37.852s][info   ][gc          ] GC(22) Pause Young (Prepare Mixed) (G1 Evacuation Pause) 50M->38M(64M) 1.787ms
+[37.852s][info   ][gc,cpu      ] GC(22) User=0.00s Sys=0.00s Real=0.00s
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+2026-11-22T17:25:47.496+03:00  INFO 28032 --- [webcrawler] [0.0-8080-exec-4] com.webcrawler.service.CrawlerService    : Crawler started: urls=1, maxPages=5
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+2026-11-22T17:25:47.828+03:00  INFO 28032 --- [webcrawler] [0.0-8080-exec-2] com.webcrawler.service.CrawlerService    : Crawler started: urls=1, maxPages=5
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+Hibernate: select c1_0.id,c1_0.address,c1_0.company_name,c1_0.email,c1_0.phone,c1_0.source_url from contact c1_0
+2026-11-22T17:25:50.346+03:00  INFO 28032 --- [webcrawler] [0.0-8080-exec-1] com.webcrawler.service.CrawlerService    : Crawler finished: pages processed = 1
+2026-11-22T17:25:50.533+03:00  INFO 28032 --- [webcrawler] [0.0-8080-exec-4] com.webcrawler.service.CrawlerService    : Crawler finished: pages processed = 1
+2026-11-22T17:25:50.849+03:00  INFO 28032 --- [webcrawler] [0.0-8080-exec-2] com.webcrawler.service.CrawlerService    : Crawler finished: pages processed = 1
+[105.848s][info   ][gc,start    ] GC(23) Pause Young (Mixed) (G1 Evacuation Pause)
+[105.848s][info   ][gc,task     ] GC(23) Using 13 workers of 13 for evacuation
+[105.849s][info   ][gc,phases   ] GC(23)   Pre Evacuate Collection Set: 0.07ms
+[105.849s][info   ][gc,phases   ] GC(23)   Merge Heap Roots: 0.05ms
+[105.849s][info   ][gc,phases   ] GC(23)   Evacuate Collection Set: 0.94ms
+[105.849s][info   ][gc,phases   ] GC(23)   Post Evacuate Collection Set: 0.23ms
+[105.849s][info   ][gc,phases   ] GC(23)   Other: 0.04ms
+[105.849s][info   ][gc,heap     ] GC(23) Eden regions: 19->0(20)
+[105.849s][info   ][gc,heap     ] GC(23) Survivor regions: 1->2(3)
+[105.849s][info   ][gc,heap     ] GC(23) Old regions: 37->36
+[105.849s][info   ][gc,heap     ] GC(23) Humongous regions: 1->1
+[105.849s][info   ][gc,metaspace] GC(23) Metaspace: 95379K(96384K)->95379K(96384K) NonClass: 82329K(82880K)->82329K(82880K) Class: 13049K(13504K)->13049K(13504K)
+[105.850s][info   ][gc          ] GC(23) Pause Young (Mixed) (G1 Evacuation Pause) 57M->38M(64M) 1.425ms
+[105.850s][info   ][gc,cpu      ] GC(23) User=0.00s Sys=0.00s Real=0.00s
