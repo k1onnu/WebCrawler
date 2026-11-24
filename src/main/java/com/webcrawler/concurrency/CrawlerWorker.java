@@ -6,6 +6,8 @@ import com.webcrawler.repository.ContactRepository;
 import com.webcrawler.service.CrawlerMetrics;
 import com.webcrawler.service.HtmlParser;
 import io.micrometer.core.instrument.Timer;
+import io.micrometer.tracing.Span;
+import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -37,6 +39,7 @@ public class CrawlerWorker implements Runnable {
     private final int maxPages;
     private final String userAgent;
     private final CrawlerMetrics metrics;
+    private final Tracer tracer;
 
     @Override
     public void run() {
@@ -79,35 +82,39 @@ public class CrawlerWorker implements Runnable {
     }
 
     private void processPage(String name, String url) {
-        logger.log("%s from %s".formatted(name, url));
+        Span span = tracer.nextSpan().name("CrawlerWorker.processPage").tag("url", url).start();
+        try (Tracer.SpanInScope ws = tracer.withSpan(span)) {
 
-        Timer.Sample sample = Timer.start();
+            logger.log("%s from %s".formatted(name, url));
+            Timer.Sample sample = Timer.start();
 
-        try {
-            Document document = Jsoup.connect(url)
-                    .timeout(HTTP_TIMEOUT_MS)
-                    .userAgent(userAgent)
-                    .get();
+            try {
+                Document document = Jsoup.connect(url)
+                        .timeout(HTTP_TIMEOUT_MS)
+                        .userAgent(userAgent)
+                        .get();
 
-            ParsedPage parsedPage = htmlParser.parse(url, document.outerHtml());
+                ParsedPage parsedPage = htmlParser.parse(url, document.outerHtml());
+                saveContacts(name, url, parsedPage.contacts());
 
-            saveContacts(name, url, parsedPage.contacts());
-
-            if (pagesProcessed.get() < maxPages) {
-                for (String link : parsedPage.links()) {
-                    if (!urlQueue.offer(link)) {
-                        logger.log(name + " Queue is full! Dropping link: " + link);
+                if (pagesProcessed.get() < maxPages) {
+                    for (String link : parsedPage.links()) {
+                        if (!urlQueue.offer(link)) {
+                            logger.log(name + " Queue is full! Dropping link: " + link);
+                        }
                     }
                 }
+                metrics.incrementSuccess();
+
+            } catch (Exception e) {
+                logger.log("%s ERROR on %s: %s".formatted(name, url, e.getMessage()));
+                metrics.incrementError();
+            } finally {
+                sample.stop(metrics.getParseTimer());
             }
 
-            metrics.incrementSuccess();
-
-        } catch (Exception e) {
-            logger.log("%s ERROR on %s: %s".formatted(name, url, e.getMessage()));
-            metrics.incrementError();
         } finally {
-            sample.stop(metrics.getParseTimer());
+            span.end();
         }
     }
 

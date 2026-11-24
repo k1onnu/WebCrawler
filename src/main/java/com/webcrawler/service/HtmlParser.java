@@ -2,6 +2,9 @@ package com.webcrawler.service;
 
 import com.webcrawler.dto.ParsedPage;
 import com.webcrawler.entity.Contact;
+import io.micrometer.tracing.Span;
+import io.micrometer.tracing.Tracer;
+import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,20 +12,27 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
+@RequiredArgsConstructor
 public class HtmlParser {
 
+    private final Tracer tracer;
+
     public ParsedPage parse(String sourceUrl, String html) {
-        Document document = Jsoup.parse(html, sourceUrl);
-        List<String> links = extractLinks(document);
-        List<Contact> contacts = extractContacts(sourceUrl, document);
-        return new ParsedPage(contacts, links);
+        Span span = tracer.nextSpan().name("HtmlParser.parse").start();
+        try (Tracer.SpanInScope ws = tracer.withSpan(span)) {
+            Document document = Jsoup.parse(html, sourceUrl);
+            List<String> links = extractLinks(document);
+            List<Contact> contacts = extractContacts(sourceUrl, document);
+            return new ParsedPage(contacts, links);
+        } finally {
+            span.end();
+        }
     }
 
     private List<String> extractLinks(Document document) {

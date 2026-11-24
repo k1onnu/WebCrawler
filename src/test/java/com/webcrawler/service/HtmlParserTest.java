@@ -2,14 +2,38 @@ package com.webcrawler.service;
 
 import com.webcrawler.dto.ParsedPage;
 import com.webcrawler.entity.Contact;
+import io.micrometer.tracing.Span;
+import io.micrometer.tracing.Tracer;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class HtmlParserTest {
-    private HtmlParser parser = new HtmlParser();
+
+    private HtmlParser parser;
+    private Tracer tracer;
+
+    @BeforeEach
+    void setUp() {
+        // Создаем заглушки (mocks) для Tracer и Span, чтобы тесты работали без Jaeger
+        tracer = mock(Tracer.class);
+        Span span = mock(Span.class);
+        Tracer.SpanInScope spanInScope = mock(Tracer.SpanInScope.class);
+
+        when(tracer.nextSpan()).thenReturn(span);
+        when(span.name(anyString())).thenReturn(span);
+        when(span.start()).thenReturn(span);
+        when(tracer.withSpan(span)).thenReturn(spanInScope);
+
+        // Передаем замоканный tracer в конструктор
+        parser = new HtmlParser(tracer);
+    }
 
     @Test
     void shouldExtractEmailFromHtml() {
@@ -32,7 +56,7 @@ public class HtmlParserTest {
         assertTrue(email.contains("info@pupupu.ru"),
                 "Должен быть найден info@pupupu.ru");
         assertTrue(email.contains("sales@pupupu.ru"),
-                "Должен быть найден sales@pupupu.ru");;
+                "Должен быть найден sales@pupupu.ru");
     }
 
     @Test
@@ -71,7 +95,7 @@ public class HtmlParserTest {
 
         ParsedPage result = parser.parse("https://test.ru", html);
         assertTrue(result.contacts().isEmpty(),
-                "Контактов быть не должно. D HTML нет email");
+                "Контактов быть не должно. В HTML нет email");
     }
 
     @Test

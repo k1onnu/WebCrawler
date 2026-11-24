@@ -3,6 +3,7 @@ package com.webcrawler.service;
 import com.webcrawler.concurrency.CrawlerWorker;
 import com.webcrawler.concurrency.FileLogger;
 import com.webcrawler.repository.ContactRepository;
+import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,9 +30,10 @@ public class CrawlerService {
     private final ContactRepository repository;
     private final HtmlParser htmlParser;
     private final FileLogger fileLogger;
+    private final CrawlerMetrics metrics;
+    private final Tracer tracer;
     @Value("${crawler.user-agent}")
     private String userAgent;
-    private final CrawlerMetrics metrics;
 
     public int startCrawler(List<String> startUrls, int maxPages) {
         log.info("Crawler started: urls={}, maxPages={}", startUrls.size(), maxPages);
@@ -56,7 +58,7 @@ public class CrawlerService {
             CrawlerWorker worker = new CrawlerWorker(
                     latch, urlQueue, visitedUrls, repository,
                     htmlParser, fileLogger, pagesProcessed, maxPages,
-                    userAgent, metrics
+                    userAgent, metrics, tracer
             );
             futures.add(crawlerPool.submit(worker));
         }
